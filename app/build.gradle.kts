@@ -96,4 +96,6 @@ dependencies {
     implementation(libs.converter.moshi)
     implementation(libs.logging.interceptor)
 
+    // Lottie
+    implementation(libs.lottie)
 }
