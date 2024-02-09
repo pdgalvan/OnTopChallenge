@@ -16,21 +16,20 @@ fun CharacterGraph(
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = CharacterNav.List.route,
-
+        startDestination = CharacterNavigation.List.route,
     ) {
         composable(
-            route = CharacterNav.List.route,
+            route = CharacterNavigation.List.route,
         ) {
             CharacterScreen(
                 viewModel = viewModel,
                 onCharacterSelected = {
-                    navController.navigate(CharacterNav.Detail.route)
+                    navController.navigate(CharacterNavigation.Detail.route)
                 }
             )
         }
         composable(
-            route = CharacterNav.Detail.route,
+            route = CharacterNavigation.Detail.route,
         ) {
             CharacterDetailScreen(
                 viewModel = viewModel,
