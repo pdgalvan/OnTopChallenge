@@ -12,7 +12,7 @@ data class Character(
     val gender: String,
     val image: String,
     val location: Location,
-    val origin: Origin,
+    val origin: Location,
     val species: String,
     val status: String,
     val type: String,

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">OnTop</string>
+
+    <string name="last_location">Last location:</string>
+    <string name="hint_search_query">Search caracter</string>
+
+    <string name="label_status">Status:</string>
+    <string name="label_gender">Gender:</string>
+    <string name="label_species">Species:</string>
+    <string name="episodes_count">This character has appeared in %d episodes</string>
 </resources>
