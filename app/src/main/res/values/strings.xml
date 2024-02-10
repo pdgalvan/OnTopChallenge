@@ -8,4 +8,9 @@
     <string name="label_gender">Gender:</string>
     <string name="label_species">Species:</string>
     <string name="episodes_count">This character has appeared in %d episodes</string>
+    <string name="select_length">Select password length</string>
+    <string name="include_numbers">Include numbers</string>
+    <string name="include_symbols">Include symbols</string>
+    <string name="include_uppercase">Include uppercase</string>
+    <string name="button_generate">Generate password</string>
 </resources>
