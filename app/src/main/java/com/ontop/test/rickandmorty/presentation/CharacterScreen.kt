@@ -1,9 +1,13 @@
 package com.ontop.test.rickandmorty.presentation
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -11,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -57,16 +62,18 @@ fun CharacterContent(
     if (isLoadingScreenVisible) {
         LoadingScreen()
     } else {
-        LazyVerticalGrid(
+        LazyVerticalStaggeredGrid(
             modifier = modifier.then(Modifier.fillMaxSize()),
-            columns = GridCells.Fixed(2),
+            columns = StaggeredGridCells.Fixed(2),
+            contentPadding = PaddingValues(6.dp),
+            verticalItemSpacing = 6.dp,
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             items(
                 count = characters.itemCount,
             ) { index ->
                 characters[index]?.let { character ->
                     CharacterItem(
-                        modifier = Modifier.padding(6.dp),
                         imageUrl = character.image,
                         name = character.name,
                         lastLocation = character.location.name,
@@ -76,7 +83,26 @@ fun CharacterContent(
                     )
                 }
             }
+            characters.apply {
+                when {
+                    loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
+                        item {
+                            Box(
+                                modifier = Modifier.fillMaxWidth(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                LoadingScreen()
+                            }
+                        }
+
+                    }
+
+                    else -> Unit
+                }
+            }
+
         }
+
     }
 
     characters.apply {
